@@ -1,6 +1,7 @@
 const fetch = require('node-fetch');
+const { builder } = require('@netlify/functions');
 
-exports.handler = async (event) => {
+const handler = async (event) => {
   const response = await fetch('https://www.learnwithjason.dev/api/schedule');
 
   if (!response.ok) {
@@ -24,3 +25,5 @@ exports.handler = async (event) => {
     body: JSON.stringify(filtered),
   };
 };
+
+exports.handler = builder(handler);
